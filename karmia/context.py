@@ -39,10 +39,7 @@ class KarmiaContext:
 
     def child(self):
         child = KarmiaContext()
-        parameters = {}
-        parameters.update(self.parameters)
-
-        child.parameters = parameters
+        child.parameters = self.parameters.copy()
 
         return child
 

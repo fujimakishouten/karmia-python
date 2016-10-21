@@ -2,7 +2,7 @@
 
 
 
-from Karmia import context
+from karmia.context import KarmiaContext
 
 
 
