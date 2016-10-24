@@ -70,6 +70,9 @@ class KarmiaContext:
 
         return self.invoke(fn, values)
 
+    def async(self, fn, parameters=None):
+        return lambda callback: self.call(fn, parameters, callback)
+
 
 
 # Local variables:

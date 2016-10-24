@@ -5,7 +5,6 @@
 import unittest
 from karmia import KarmiaContext
 
-
 class TestKarmiaContextSet(unittest.TestCase):
     def test_parameter(self):
         context = KarmiaContext()
@@ -83,6 +82,82 @@ class TestKarmiaContextChild(unittest.TestCase):
         self.assertEqual(child.get(key2), values2)
         self.assertEqual(context.get(key1), values1)
         self.assertEqual(context.get(key2), None)
+
+class TestAnnotate(unittest.TestCase):
+    def test_annotate_function(self):
+        context = KarmiaContext()
+        fn = lambda value1, value2: value1 + value2
+
+        self.assertEqual(list(context.annotate(fn).keys()), ['value1', 'value2'])
+
+    def test_no_arguments(self):
+        context = KarmiaContext()
+        fn = lambda: 'result'
+
+        self.assertEqual(list(context.annotate(fn).keys()), [])
+
+class TestInvoke(unittest.TestCase):
+    def test_invoke(self):
+        context = KarmiaContext()
+        fn = lambda value1, value2: value1 + value2
+        parameters = {'value1': 1, 'value2': 2}
+
+        self.assertEqual(context.invoke(fn, parameters), parameters['value1'] + parameters['value2'])
+
+class TestCall(unittest.TestCase):
+    def test_return(self):
+        context = KarmiaContext()
+        fn = lambda value1, value2: value1 + value2
+        parameters = {'value1': 1, 'value2': 2}
+
+        self.assertEqual(context.call(fn, parameters), parameters['value1'] + parameters['value2'])
+
+    def callback(self):
+        def fn(value1, value2, callback):
+            callback(None, value1 + value2)
+
+        def callback(error, result):
+            self.assertIsNone(error)
+            self.assertEqual(result, parameters['value1', 'value2'])
+
+        context = KarmiaContext()
+        parameters = {'value1': 1, 'value2': 2}
+        context.call(fn, parameters, callback)
+
+    def test_no_parameters(self):
+        context = KarmiaContext()
+        result = 'result'
+        fn = lambda: result
+
+        self.assertEqual(context.call(fn), result)
+
+    def test_merge_parameters(self):
+        context = KarmiaContext()
+        key = 'value1'
+        value = 1
+        parameters = {'value2': 2}
+        fn = lambda value1, value2: value1 + value2
+
+        context.set(key, value)
+
+        self.assertEqual(context.call(fn, parameters), value + parameters['value2'])
+
+class TestAsync(unittest.TestCase):
+    def callback(self):
+        def fn(value1, value2, callback):
+            return callback(None, value1 + value2)
+
+        def callback(error, result):
+            self.assertIsNone(error)
+            self.assertEqual(result, parameters['value1', 'value2'])
+
+        context = KarmiaContext()
+        parameters = {'value1': 1, 'value2': 2}
+        async = context.async(fn, parameters)
+
+        self.assertTrue(callable(async))
+        async(callback)
+
 
 
 # Local variables:
