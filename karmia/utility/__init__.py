@@ -3,6 +3,7 @@
 
 
 from karmia.utility.string import KarmiaUtilityString
+from karmia.utility.array import KarmiaUtilityArray
 
 
 
