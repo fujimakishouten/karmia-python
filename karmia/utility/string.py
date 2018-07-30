@@ -3,10 +3,9 @@
 
 
 # Import modules
-import re
 import regex
 import unicodedata
-from typing import Any, Optional, Pattern, Union
+from typing import Any, Pattern, Union
 from functools import reduce
 
 # Variables
@@ -84,7 +83,7 @@ class KarmiaUtilityString:
         return self.rstrip(string, mask_characters)
 
     def normalize(self, string: str, form="NFKC") -> str:
-        lines = map(lambda s: regex.sub(others, "", s), regex.split("\r\n|\r|\n", string))
+        lines = [regex.sub(others, "", s) for s in regex.split("\r\n|\r|\n", string)]
 
         return self.trim(unicodedata.normalize(form, "\n".join(lines)))
 
@@ -120,7 +119,7 @@ class KarmiaUtilityString:
         :param bool capitalize: default False
         :rtype: str
         """
-        result = "".join(map(lambda s: s[0].upper() + s[1:], regex.split("[-_]", string)))
+        result = "".join([s[0].upper() + s[1:] for s in regex.split("[-_]", string)])
         if capitalize:
             return result[0].upper() + result[1:]
 
