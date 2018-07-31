@@ -2,8 +2,9 @@
 
 
 
-from karmia.utility.string import KarmiaUtilityString
 from karmia.utility.array import KarmiaUtilityArray
+from karmia.utility.object import KarmiaUtilityObject
+from karmia.utility.string import KarmiaUtilityString
 
 
 
