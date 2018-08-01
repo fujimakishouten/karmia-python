@@ -4,7 +4,7 @@
 
 from karmia.utility.array import KarmiaUtilityArray
 from karmia.utility.date import KarmiaUtilityDate
-from karmia.utility.object import KarmiaUtilityObject
+from karmia.utility.dict import KarmiaUtilityDict
 from karmia.utility.string import KarmiaUtilityString
 
 

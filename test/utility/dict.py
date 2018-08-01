@@ -3,12 +3,12 @@
 
 
 import unittest
-from karmia.utility import KarmiaUtilityObject
+from karmia.utility import KarmiaUtilityDict
 
 
-class TestKarmiaUtilityObjectIsDict(unittest.TestCase):
+class TestKarmiaUtilityDictIsDict(unittest.TestCase):
     def test_is_dict(self):
-        utility = KarmiaUtilityObject()
+        utility = KarmiaUtilityDict()
 
         self.assertEqual(utility.is_dict({}), True)
         self.assertEqual(utility.is_dict(0), False)
@@ -16,18 +16,18 @@ class TestKarmiaUtilityObjectIsDict(unittest.TestCase):
         self.assertEqual(utility.is_dict(True), False)
         self.assertEqual(utility.is_dict(lambda x: x), False)
 
-class TestKarmiaUtilityObjectFlip(unittest.TestCase):
+class TestKarmiaUtilityDictFlip(unittest.TestCase):
     def test_flip(self):
-        utility = KarmiaUtilityObject()
+        utility = KarmiaUtilityDict()
         values = {"a": "A", "b": "B", "c": "C", "d": 1, "e": 2, "f": 3}
         result = utility.flip(values)
 
         for key in values.keys():
             self.assertEqual(result[values[key]], key)
 
-class TestKarmiaUtilityObjectMerge(unittest.TestCase):
+class TestKarmiaUtilityDictMerge(unittest.TestCase):
     def test_merge(self):
-        utility = KarmiaUtilityObject()
+        utility = KarmiaUtilityDict()
         dictionary1 = {
             "a": "A",
             "b": {
@@ -115,9 +115,9 @@ class TestKarmiaUtilityObjectMerge(unittest.TestCase):
             }
         })
 
-class TestKarmiaUtilityObjectMergeProperties(unittest.TestCase):
+class TestKarmiaUtilityDictMergeProperties(unittest.TestCase):
     def test_merge_properties(self):
-        utility = KarmiaUtilityObject()
+        utility = KarmiaUtilityDict()
         dictionary1 = {
             "a": "A",
             "b": {
@@ -205,9 +205,9 @@ class TestKarmiaUtilityObjectMergeProperties(unittest.TestCase):
             }
         })
 
-class TestKarmiaUtilityObjectRemove(unittest.TestCase):
+class TestKarmiaUtilityDictRemove(unittest.TestCase):
     def test_remove(self):
-        utility = KarmiaUtilityObject()
+        utility = KarmiaUtilityDict()
         value = {"a": "A", "b": "B", "c": "C", "d": 1, "e": 2, "f": 3}
         result = utility.remove(value, "c")
 
@@ -220,7 +220,7 @@ class TestKarmiaUtilityObjectRemove(unittest.TestCase):
         self.assertIn("f", result)
 
     def test_remove_deep(self):
-        utility = KarmiaUtilityObject()
+        utility = KarmiaUtilityDict()
         value = {
             "a": {
                 "b": {
@@ -247,7 +247,7 @@ class TestKarmiaUtilityObjectRemove(unittest.TestCase):
         })
 
     def test_remove_multiple_position(self):
-        utility = KarmiaUtilityObject()
+        utility = KarmiaUtilityDict()
         value = {
             "a": {
                 "a": {
@@ -280,7 +280,7 @@ class TestKarmiaUtilityObjectRemove(unittest.TestCase):
         })
 
     def test_remove_multiple_property(self):
-        utility = KarmiaUtilityObject()
+        utility = KarmiaUtilityDict()
         value = {
             "a": {
                 "a": {
@@ -304,9 +304,9 @@ class TestKarmiaUtilityObjectRemove(unittest.TestCase):
             }
         })
 
-class TestKarmiaUtilityObjectRemoveProperties(unittest.TestCase):
+class TestKarmiaUtilityDictRemoveProperties(unittest.TestCase):
     def test_remove(self):
-        utility = KarmiaUtilityObject()
+        utility = KarmiaUtilityDict()
         value = {"a": "A", "b": "B", "c": "C", "d": 1, "e": 2, "f": 3}
         result = utility.remove_properties(value, "c")
 
@@ -319,7 +319,7 @@ class TestKarmiaUtilityObjectRemoveProperties(unittest.TestCase):
         self.assertIn("f", result)
 
     def test_remove_deep(self):
-        utility = KarmiaUtilityObject()
+        utility = KarmiaUtilityDict()
         value = {
             "a": {
                 "b": {
@@ -346,7 +346,7 @@ class TestKarmiaUtilityObjectRemoveProperties(unittest.TestCase):
         })
 
     def test_remove_multiple_position(self):
-        utility = KarmiaUtilityObject()
+        utility = KarmiaUtilityDict()
         value = {
             "a": {
                 "a": {
@@ -379,7 +379,7 @@ class TestKarmiaUtilityObjectRemoveProperties(unittest.TestCase):
         })
 
     def test_remove_multiple_property(self):
-        utility = KarmiaUtilityObject()
+        utility = KarmiaUtilityDict()
         value = {
             "a": {
                 "a": {

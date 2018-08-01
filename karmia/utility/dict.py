@@ -7,7 +7,7 @@ from typing import Any, Union
 from functools import reduce
 
 
-class KarmiaUtilityObject:
+class KarmiaUtilityDict:
     def is_dict(self, value: Any) -> bool:
         """
         Check if value is an instance of Object
