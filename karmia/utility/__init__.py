@@ -5,6 +5,7 @@
 from karmia.utility.array import KarmiaUtilityArray
 from karmia.utility.date import KarmiaUtilityDate
 from karmia.utility.dict import KarmiaUtilityDict
+from karmia.utility.random import KarmiaUtilityRandom
 from karmia.utility.string import KarmiaUtilityString
 
 
