@@ -2,6 +2,7 @@
 
 
 
+import karmia.utility
 from karmia.context import KarmiaContext
 
 
